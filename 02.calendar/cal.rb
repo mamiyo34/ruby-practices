@@ -5,7 +5,6 @@ opt = OptionParser.new
 params = {}
 opt.on('-y [YEAR]', Integer) do |year|
   year if year.between?(1, 9999) #オプション-yは1〜9999のみ整数の引数として受け付ける
-  p year
 end
 opt.on('-m [MONTH]', Integer) do |month|
   month if month.between?(1, 12) #オプション-mは1〜12のみ整数の引数として受け付ける
