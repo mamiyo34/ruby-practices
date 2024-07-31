@@ -3,12 +3,8 @@ require 'optparse'
 require 'date'
 opt = OptionParser.new
 params = {}
-opt.on('-y [YEAR]', Integer) do |year|
-  year if year.between?(1, 9999) #西暦4桁を上限とするため9999までとした
-end
-opt.on('-m [MONTH]', Integer) do |month|
-  month if month.between?(1, 12) #1月〜12月
-end
+opt.on('-y [YEAR]', Integer) {|year| year if year.between?(1, 9999)} #西暦4桁を上限とするため9999までとした
+opt.on('-m [MONTH]', Integer) {|month| month if month.between?(1, 12)} #1月〜12月
 opt.parse!(ARGV, into: params)
 
 display_year = params[:y] || Date.today.year
@@ -21,9 +17,7 @@ day_of_week = " 日 月 火 水 木 金 土 "
 
 puts title.center(21) #カレンダーの幅21=1日の幅3*7日
 puts day_of_week
-first_day.wday.times do #月初の日の曜日をカレンダー上で合わせるための処理
-  print " ".to_s.rjust(3)
-end
+first_day.wday.times {print " ".to_s.rjust(3)} #月初の日の曜日をカレンダー上で合わせるための処理
 (first_day..last_day).each do |date|
   print date.day.to_s.rjust(3)
   puts " " if date.saturday?
