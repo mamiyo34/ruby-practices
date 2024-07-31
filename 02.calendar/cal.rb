@@ -26,7 +26,5 @@ first_day.wday.times do #月初の日の曜日をカレンダー上で合わせ�
 end
 (first_day..last_day).each do |date|
   print date.day.to_s.rjust(3)
-  if date.saturday?
-    puts " "
-  end
+  puts " " if date.saturday?
 end
