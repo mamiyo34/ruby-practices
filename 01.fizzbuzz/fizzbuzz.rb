@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-i = 1
 1.upto(20) do |i|
   if i % 15 == 0
     puts "FizzBuzz"
