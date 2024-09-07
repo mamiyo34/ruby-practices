@@ -13,10 +13,7 @@ scores.each do |s|
   end
 end
 
-frames = []
-shots.each_slice(2).each_with_index do |s, i|
-  frames << [s, i]
-end
+frames = shots.each_slice(2).each_with_index.to_a
 point = 0
 
 frames.each do |frame, i|
