@@ -17,13 +17,14 @@ frames = shots.each_slice(2).each_with_index.to_a
 point = 0
 
 frames.each do |frame, i|
-  if i <= 8 && frame[0] == 10 # 9フレーム目までのストライク処理
-    point += 10 + 10 + frames[i + 2][0][0].to_i if frames[i + 1][0][0].to_i == 10
-    point += 10 + frames[i + 1][0].sum unless frames[i + 1][0][0].to_i == 10
-  elsif i <= 8 && frame.sum == 10 # 9フレーム目までのスペア処理
-    point += 10 + frames[i + 1][0][0].to_i
-  else # 10フレーム目以降の処理
-    point += frame.sum
+  point += frame.sum
+  next if frame.sum != 10 || i >= 9
+  point += frames[i + 1][0][0]
+  next if frame[0] != 10
+  if frames[i + 1][0][0] == 10
+    point += frames[i + 2][0][0]
+  else
+    point += frames[i + 1][0][1]
   end
 end
 puts point
